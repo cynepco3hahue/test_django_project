@@ -8,4 +8,6 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>\d+)/results/$',
         views.ResultsView.as_view(), name='results'),
     url(r'^(?P<question_id>\d+)/vote/$', views.vote, name='vote'),
+    url(r'^(?P<pk>\d+)/new$', views.CreateContactView.as_view(),
+                  name='add_question'),
 )

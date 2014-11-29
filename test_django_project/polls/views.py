@@ -54,3 +54,14 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
+
+
+from django.views.generic import CreateView
+
+
+class CreateContactView(CreateView):
+    model = Question
+    template_name = 'polls/add_question.html'
+
+    def get_success_url(self):
+        return reverse('polls:index')

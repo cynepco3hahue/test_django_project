@@ -1,0 +1,38 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'log_collector/style.css' %}" />
+
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>Log Collector</title>
+</head>
+<body style="height: 23px;">
+<div id="header">
+<h1 style="height: 13px;">Log Collector</h1>
+</div>
+<br>
+<div id="content">
+	<div id="add_host">
+    <form action="{% url "log_collector:index" %}" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+    {{ form.as_p }}
+		<input name="_add_host" value="Add Host" type="submit" class="button">
+    </form>
+    <input name="_get_logs" value="Get Logs" type="submit" class="button" style="float: right;">
+		<br>
+        {% if log_files %}
+            <div id="Logs">
+                {% for log in log_files %}
+                <label for={{ log.log_name }}>{{ log.log_name }}</label>
+                <input value="None" id={{ log.log_name }} name={{ log.log_name }} type="checkbox">
+                <br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    <br>
+	</div>
+</div>
+</body>
+</html>

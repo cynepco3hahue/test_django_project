@@ -8,4 +8,7 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^blog/', include('blog.urls',
                                               namespace="blog")),
+                       url(r'^log_collector/', include(
+                           'log_collector.urls',
+                           namespace="log_collector"))
                        )
