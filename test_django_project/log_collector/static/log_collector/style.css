@@ -4,16 +4,50 @@ color:white;
 text-align:center;
 padding:5px;
 }
-#content {
+#add_host {
+border: #000000 solid;
 line-height:30px;
 width:33%;
+height: 420px;
 float:left;
 padding:5px;
+position: relative;
 }
-#logs {
+#checkbox_fields {
+    position: relative;
+    margin-left: 40%;
+    border: solid #000000;
+    line-height:30px;
+    height: 420px;
+    padding:5px;
+}
+#logs
+{
+    position: relative;
+    float: right;
+    margin-right: 5%;
+    display: block;
+
+}
+#hosts
+{
+    position: relative;
+    float: left;
+    display: block;
+}
+#error_message
+{
+    margin-top: 1%;
+    font-size: 18px;
+    color: red;
 }
 body {
 background: #555;
+}
+ul {
+  height: 300px;
+  @include columns: 10em;
+  @include column-fill: auto;
 }
 input[type="text"], input[type='password'] {
   display: block;
@@ -23,14 +57,13 @@ input[type="text"], input[type='password'] {
   font-size: 18px;
   appearance: none;
   box-shadow: none;
-  border-radius: none;
 }
 label {
-color: white;
-font-weight: bold;
-display: block;
-width: 150px;
-float: left;
+    color: white;
+    font-weight: bold;
+    display: block;
+    width: 250px;
+    float: left;
 }
 .button {
    background: #65a9d7;

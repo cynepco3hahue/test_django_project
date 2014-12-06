@@ -13,26 +13,53 @@ http-equiv="content-type">
 <h1 style="height: 13px;">Log Collector</h1>
 </div>
 <br>
-<div id="content">
-	<div id="add_host">
+<div id="add_host">
     <form action="{% url "log_collector:index" %}" method="post" accept-charset="utf-8">
     {% csrf_token %}
     {{ form.as_p }}
-		<input name="_add_host" value="Add Host" type="submit" class="button">
+	<input name="_add_host" value="Add Host" type="submit" class="button" style="position: absolute; bottom: 5%;">
     </form>
-    <input name="_get_logs" value="Get Logs" type="submit" class="button" style="float: right;">
-		<br>
-        {% if log_files %}
-            <div id="Logs">
-                {% for log in log_files %}
-                <label for={{ log.log_name }}>{{ log.log_name }}</label>
-                <input value="None" id={{ log.log_name }} name={{ log.log_name }} type="checkbox">
-                <br>
-                {% endfor %}
-            </div>
-        {% endif %}
+</div>
+<div id="checkbox_fields">
+<form action="{% url "log_collector:index" %}" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+    {% if log_files %}
+        <div id="logs">
+        <ul>
+        <label >Logs:</label>
+        <br>
+        {% for log in log_files %}
+            <label for={{ log.log_name }}>{{ log.log_name }}</label>
+            <input value={{ log.log_name }} name="logs[]" type="checkbox">
+            <br>
+        {% endfor %}
+        </ul>
+        </div>
+    {% endif %}
+    {% if hosts %}
+        <div id="hosts">
+        <ul>
+        <label >Hosts:</label>
+        <br>
+        {% for host in hosts %}
+            <label for={{ host.host_name }}>{{ host.host_name }}</label>
+            <input value={{ host.host_name }} name="hosts[]" type="checkbox">
+             <br>
+        {% endfor %}
+        </ul>
+        </div>
+    <input name="_get_logs" value="Get Logs" type="submit" class="button" style="position: absolute; bottom: 5%; right: 15%">
+    <input name="_delete_hosts" value="Delete Hosts" type="submit" class="button" style="position: absolute; bottom: 5%; left: 15%">
+    {% endif %}
     <br>
-	</div>
+</form>
+</div>
+<div id="error_message">
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endif %}
 </div>
 </body>
 </html>
